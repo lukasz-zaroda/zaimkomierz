@@ -28,14 +28,18 @@ jQuery(document).ready(function () {
 
   const ambiguousPronounsString = $ambiguousPronouns.val();
 
+  const regexPronounSeparators = '\\s\\n\\.,:;';
+  const regexStart = '(?<=^|[' + regexPronounSeparators + '])(';
+  const regexEnd = ')(?=[' + regexPronounSeparators + ']|$)';
+
   $mainTextarea.highlightWithinTextarea({
     highlight: [
       {
-        highlight: new RegExp('(?<=^|[\\s\\n])(' + pronouns.join('|') + ')(?=[\\s\\.,]|$)', 'gi'),
+        highlight: new RegExp(regexStart + pronouns.join('|') + regexEnd, 'gi'),
         className: 'pronoun'
       },
       {
-        highlight: new RegExp('(?<=^|[\\s\\n])(' + ambiguousPronounsString.split(', ').join('|') + ')(?=[\\s\\.,]|$)', 'gi'),
+        highlight: new RegExp(regexStart + ambiguousPronounsString.split(', ').join('|') + regexEnd, 'gi'),
         className: 'pronoun--ambiguous'
       },
     ],
