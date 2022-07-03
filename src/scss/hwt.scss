@@ -1,0 +1,36 @@
+@import "~highlight-within-textarea/jquery.highlight-within-textarea.css";
+
+.hwt-highlights {
+  .pronoun {
+    background-color: #83c969;
+    border-radius: 3px;
+
+    &--ambiguous {
+      background-color: #c9ffa7;
+    }
+  }
+}
+
+/*
+ * This is a fix highlight-within-textarea generated textarea field not looking like a bootstrap
+ * one.
+ */
+
+.hwt-container {
+  @extend .form-control;
+  @extend .flex-grow-1;
+  @extend .d-flex;
+  @extend .flex-column;
+  padding: 0;
+}
+
+.hwt-content {
+  border: none !important;
+  padding: 0.375rem 0.75rem;
+}
+
+.hwt-backdrop {
+  & + textarea {
+    padding: 0.375rem 0.75rem;
+  }
+}
